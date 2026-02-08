@@ -1,0 +1,75 @@
+@HabitTrackerApi_HostAddress = http://localhost:5177
+
+### Get all habits
+GET {{HabitTrackerApi_HostAddress}}/api/habits
+Accept: application/json
+
+###
+
+### Get only archived habits
+GET {{HabitTrackerApi_HostAddress}}/api/habits?isArchived=true
+Accept: application/json
+
+###
+
+### Get a specific habit by ID (Assuming ID 1 exists)
+GET {{HabitTrackerApi_HostAddress}}/api/habits/1
+Accept: application/json
+
+###
+
+### Create a new habit
+POST {{HabitTrackerApi_HostAddress}}/api/habits
+Content-Type: application/json
+
+{
+  "name": "Drink Water",
+  "description": "Drink at least 2 liters a day",
+  "targetPerWeek": 7
+}
+
+###
+
+### Update a habit
+PUT {{HabitTrackerApi_HostAddress}}/api/habits/1
+Content-Type: application/json
+
+{
+  "name": "Drink More Water",
+  "description": "Updated goal: 3 liters a day",
+  "targetPerWeek": 7,
+  "isArchived": false
+}
+
+###
+
+### Archive a habit
+PATCH {{HabitTrackerApi_HostAddress}}/api/habits/1/archive
+
+###
+
+### Log a check-in for a habit
+POST {{HabitTrackerApi_HostAddress}}/api/checkins
+Content-Type: application/json
+
+{
+  "habitId": 1,
+  "date": "2026-02-08",
+  "note": "Drank 3 liters, feeling great!"
+}
+
+###
+
+### Get all check-ins for a specific habit
+GET {{HabitTrackerApi_HostAddress}}/api/checkins/habit/1
+Accept: application/json
+
+###
+
+### Delete a check-in record
+DELETE {{HabitTrackerApi_HostAddress}}/api/checkins/1
+
+###
+
+### Delete a habit
+DELETE {{HabitTrackerApi_HostAddress}}/api/habits/1
